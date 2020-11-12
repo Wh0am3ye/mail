@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Send email
   document.querySelector('#send-email').onclick = () => {
         send_email();
-    };
+  };
 
   // Get mailbox
   document.querySelectorAll('button').forEach(button => {
@@ -21,8 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
         history.pushState({mailbox: mailbox}, "", `${mailbox}`);
         get_mailbox(mailbox);
     };
-});
-
+  });
 
 });
 
