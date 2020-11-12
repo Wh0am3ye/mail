@@ -8,6 +8,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // By default, load the inbox
   load_mailbox('inbox');
+
+  // Send email
+  document.querySelector('#send-email').onclick = () => {
+        send_email();
+    };
+
+  // Get mailbox
+  document.querySelectorAll('button').forEach(button => {
+    button.onclick = function() {
+        const mailbox = this.dataset.mailbox;
+        history.pushState({mailbox: mailbox}, "", `${mailbox}`);
+        get_mailbox(mailbox);
+    };
+});
+
+
 });
 
 function compose_email() {
@@ -30,4 +46,31 @@ function load_mailbox(mailbox) {
 
   // Show the mailbox name
   document.querySelector('#emails-view').innerHTML = `<h3>${mailbox.charAt(0).toUpperCase() + mailbox.slice(1)}</h3>`;
+}
+
+function send_email() {
+
+    fetch('/emails', {
+      method: 'POST',
+      body: JSON.stringify({
+          recipients: document.querySelector('#compose-recipients').value,
+          subject: document.querySelector('#compose-subject').value,
+          body: document.querySelector('#body').value
+      })
+    })
+    .then(response => response.json())
+    .then(result => {
+        // Print result
+        console.log(result);
+    });
+
+}
+
+function get_mailbox(mailbox) {
+    fetch(`/emails/${mailbox}`)
+    .then(response => response.json())
+    .then(emails => {
+      console.log(emails);
+      // Do something else with emails.
+    });
 }
