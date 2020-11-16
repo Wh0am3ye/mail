@@ -1,3 +1,5 @@
+
+
 document.addEventListener('DOMContentLoaded', function() {
 
   // Use buttons to toggle between views
@@ -12,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Send email
   document.querySelector('#send-email').onclick = () => {
         send_email();
+        return false;
   };
 
   // Get mailbox
@@ -21,7 +24,11 @@ document.addEventListener('DOMContentLoaded', function() {
         history.pushState({mailbox: mailbox}, "", `${mailbox}`);
         get_mailbox(mailbox);
     };
-  });
+  });  
+
+  window.onpopstate = function(event) {
+    load_mailbox(event.state.mailbox)
+  };
 
 });
 
@@ -54,15 +61,16 @@ function send_email() {
       body: JSON.stringify({
           recipients: document.querySelector('#compose-recipients').value,
           subject: document.querySelector('#compose-subject').value,
-          body: document.querySelector('#body').value
+          body: document.querySelector('#compose-body').value
       })
     })
     .then(response => response.json())
     .then(result => {
         // Print result
         console.log(result);
+        load_mailbox('sent')
     });
-
+    return false;
 }
 
 function get_mailbox(mailbox) {
