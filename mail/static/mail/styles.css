@@ -1,3 +1,29 @@
 textarea {
     min-height: 400px;
 }
+
+div.email:nth-of-type(1) {
+    border-top: 1px solid black !important;
+}
+
+div.email {
+    border-left: 1px solid black !important;
+    border-bottom: 1px solid black !important;
+    border-right: 1px solid black !important;
+    height: 3rem;
+    padding: .5rem;
+    vertical-align: middle;
+}
+
+.email-sender {
+    font-weight: normal;
+}
+
+.email-subject {
+    font-weight: normal;
+}
+
+.email-timestamp {
+    font-weight: lighter;
+    float: right;
+}

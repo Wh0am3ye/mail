@@ -78,6 +78,15 @@ function get_mailbox(mailbox) {
     .then(response => response.json())
     .then(emails => {
       console.log(emails);
-      // Do something else with emails.
+      emails.forEach( email => {
+        const emailDetails = document.createElement('div');
+        emailDetails.innerHTML = `<b>Sender:</b> <span class="email-sender">${email.sender}</span> <b>Subject:</b> <span class="email-subject">${email.subject}</span> <span class="email-timestamp">${email.timestamp}</span>`;
+        emailDetails.className = 'email';
+        document.querySelector('#emails-view').append(emailDetails);
+      })
+    })
+    .catch(error => {
+      console.log('Error:', error);
     });
+    return false;
 }
