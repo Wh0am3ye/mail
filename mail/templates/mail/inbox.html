@@ -4,11 +4,11 @@
 {% block body %}
     <h2>{{ request.user.email }}</h2>
 
-    <button data-mailbox="inbox" class="btn btn-sm btn-outline-primary" id="inbox">Inbox</button>
-    <button data-mailbox="compose" class="btn btn-sm btn-outline-primary" id="compose">Compose</button>
-    <button data-mailbox="sent" class="btn btn-sm btn-outline-primary" id="sent">Sent</button>
-    <button data-mailbox="archived" class="btn btn-sm btn-outline-primary" id="archived">Archived</button>
-    <a class="btn btn-sm btn-outline-primary" href="{% url 'logout' %}">Log Out</a>
+    <button data-mailbox="inbox" class="btn btn-sm btn-outline-primary navi" id="inbox">Inbox</button>
+    <button data-mailbox="compose" class="btn btn-sm btn-outline-primary navi" id="compose">Compose</button>
+    <button data-mailbox="sent" class="btn btn-sm btn-outline-primary navi" id="sent">Sent</button>
+    <button data-mailbox="archived" class="btn btn-sm btn-outline-primary navi" id="archived">Archived</button>
+    <a class="btn btn-sm btn-outline-primary navi" href="{% url 'logout' %}">Log Out</a>
     <hr>
 
     <div id="emails-view">
@@ -32,7 +32,9 @@
     </div>
 
     <div id="mail-view">
-        
+        <div id="email-area">
+        </div>
+        <button id="reply" class="btn btn-outline-primary" type="button">Reply</button>&nbsp;<button id="archive" class="btn btn-outline-secondary" type="button">Archive</button>
     </div>
 {% endblock %}
 
