@@ -11,8 +11,18 @@ div.email {
     border-bottom: 1px solid black !important;
     border-right: 1px solid black !important;
     height: 3rem;
-    padding: .5rem;
+    padding: .75rem .5rem .5rem .5rem;
     vertical-align: middle;
+}
+
+div.email:hover {
+    box-shadow: 0rem 0rem 4px #9B9594;
+    cursor: pointer;
+}
+
+a, a:hover {
+    text-decoration: none;
+    color: black;
 }
 
 .email-sender {
