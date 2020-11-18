@@ -145,6 +145,8 @@ function view_email(id, mailbox) {
       } else if (mail.archived == true) {
         unarchive(mail.id);
       };
+      load_mailbox('inbox');
+      history.pushState('inbox', '', 'inbox');
     });
 
   })
@@ -188,10 +190,6 @@ function archive(id) {
       archived: true
     }),
   })
-  .then(
-    window.setTimeout(load_mailbox('inbox'), 1000),
-    history.pushState('inbox', '', 'inbox')
-    );
 }
 
 function unarchive(id) {
@@ -201,10 +199,6 @@ function unarchive(id) {
       archived: false
     }),
   })
-  .then(
-    window.setTimeout(load_mailbox('inbox'), 1000),
-    history.pushState('inbox', '', 'inbox')
-    );
 }
 
 function reply(sender, subject, timestamp, body) {
